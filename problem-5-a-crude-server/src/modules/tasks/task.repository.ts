@@ -74,7 +74,7 @@ export class TaskRepository {
       params.priority = query.priority;
     }
     if (query.q) {
-      conditions.push('(LOWER(title) LIKE @q OR LOWER(IFNULL(description, "")) LIKE @q)');
+      conditions.push("(LOWER(title) LIKE @q OR LOWER(IFNULL(description, '')) LIKE @q)");
       params.q = `%${query.q.toLowerCase()}%`;
     }
 

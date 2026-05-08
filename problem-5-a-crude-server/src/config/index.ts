@@ -4,7 +4,7 @@ import { z } from 'zod';
 dotenv.config();
 
 const ConfigSchema = z.object({
-  port: z.coerce.number().int().positive().default(3000),
+  port: z.coerce.number().int().positive().default(3001),
   nodeEnv: z.enum(['development', 'production', 'test']).default('development'),
   databasePath: z.string().min(1).default('./data/tasks.db'),
 });

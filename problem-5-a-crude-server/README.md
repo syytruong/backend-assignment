@@ -29,9 +29,9 @@ npm run db:migrate
 # 4. Start the dev server with auto-reload
 npm run dev
 
-# Server is now listening on http://localhost:3000
+# Server is now listening on http://localhost:3001
 # Health check:
-curl http://localhost:3000/health
+curl http://localhost:3001/health
 ```
 
 For a production build:
@@ -55,7 +55,7 @@ All config is loaded from environment variables (see `.env.example`). Validated 
 
 | Variable        | Default              | Description |
 |-----------------|----------------------|-------------|
-| `PORT`          | `3000`               | HTTP port to listen on. |
+| `PORT`          | `3001`               | HTTP port to listen on. |
 | `NODE_ENV`      | `development`        | One of `development`, `production`, `test`. |
 | `DATABASE_PATH` | `./data/tasks.db`    | SQLite file path. Use `:memory:` for an ephemeral DB. |
 
@@ -70,7 +70,7 @@ All responses are JSON. Successful responses for single resources are wrapped in
 ### `POST /api/v1/tasks` — create
 
 ```bash
-curl -X POST http://localhost:3000/api/v1/tasks \
+curl -X POST http://localhost:3001/api/v1/tasks \
   -H 'Content-Type: application/json' \
   -d '{
     "title": "Write spec",
@@ -93,7 +93,7 @@ Returns `201` with the created task.
 ### `GET /api/v1/tasks` — list with filters
 
 ```bash
-curl 'http://localhost:3000/api/v1/tasks?status=todo&priority=high&q=spec&limit=20&offset=0&sort=createdAt&order=desc'
+curl 'http://localhost:3001/api/v1/tasks?status=todo&priority=high&q=spec&limit=20&offset=0&sort=createdAt&order=desc'
 ```
 
 | Query     | Type                                        | Default      | Description |
@@ -117,7 +117,7 @@ Returns:
 ### `GET /api/v1/tasks/:id` — read
 
 ```bash
-curl http://localhost:3000/api/v1/tasks/<uuid>
+curl http://localhost:3001/api/v1/tasks/<uuid>
 ```
 
 Returns `200` with the task, or `404` if not found, or `422` if the id is not a valid UUID.
@@ -125,7 +125,7 @@ Returns `200` with the task, or `404` if not found, or `422` if the id is not a 
 ### `PATCH /api/v1/tasks/:id` — update
 
 ```bash
-curl -X PATCH http://localhost:3000/api/v1/tasks/<uuid> \
+curl -X PATCH http://localhost:3001/api/v1/tasks/<uuid> \
   -H 'Content-Type: application/json' \
   -d '{ "status": "in_progress" }'
 ```
@@ -135,7 +135,7 @@ Partial update — any subset of the create fields. Empty bodies are rejected wi
 ### `DELETE /api/v1/tasks/:id` — delete
 
 ```bash
-curl -X DELETE http://localhost:3000/api/v1/tasks/<uuid>
+curl -X DELETE http://localhost:3001/api/v1/tasks/<uuid>
 ```
 
 Returns `204` on success, `404` if the id doesn't exist.
